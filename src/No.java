@@ -33,4 +33,8 @@ public class No implements Util{
         this.vLig[p] = lig;
     }
 
+    public boolean haveChildren(){
+        return this.vLig != null;
+    }
+
 }

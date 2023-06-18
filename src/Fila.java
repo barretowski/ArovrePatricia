@@ -5,7 +5,7 @@ public class Fila {
         inicio = null;
     }
 
-    public void enqueue(String info){
+    public void enqueue(No info){
         NoFila novo = new NoFila(info);
         if(isEmpty()){
             inicio = novo;
@@ -18,7 +18,7 @@ public class Fila {
         }
     }
 
-    public String dequeue(){
+    public No dequeue(){
         if(isEmpty()){
             return null;
         }
@@ -27,7 +27,7 @@ public class Fila {
         return aux.getInfo();
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return inicio ==null;
     }
 

@@ -1,22 +1,22 @@
 public class NoFila{
     private NoFila prox;
-    private String info;
+    private No info;
 
-    public NoFila(NoFila prox, String info) {
+    public NoFila(NoFila prox, No info) {
         this.prox = prox;
         this.info = info;
     }
 
-    public NoFila(String info){
+    public NoFila(No info){
         this.info=info;
         this.prox=null;
     }
 
-    public String getInfo(){
+    public No getInfo(){
         return this.info;
     }
 
-    public void setInfo(String info){
+    public void setInfo(No info){
         this.info = info;
     }
 

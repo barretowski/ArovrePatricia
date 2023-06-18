@@ -3,11 +3,14 @@ public class No implements Util{
     private boolean flag;
     private No vLig[];
 
+    private int nivel;
+
     public No(String palavra, boolean flag, No[] vLig) {
         this.palavra = palavra;
         this.flag = flag;
         this.vLig = new No[N];
     }
+    public No(){}
 
     public String getPalavra() {
         return palavra;
@@ -35,6 +38,18 @@ public class No implements Util{
 
     public boolean haveChildren(){
         return this.vLig != null;
+    }
+
+    public int contChildren(){
+        return this.vLig.length;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
     }
 
 }

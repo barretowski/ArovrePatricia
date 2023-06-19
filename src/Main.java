@@ -7,6 +7,11 @@ public class Main extends BPlus{
         bplus.inserir("sapato");
         bplus.inserir("sandalia");
         bplus.inserir("barril");
+        bplus.inserir("relogio");
+        bplus.inserir("repelente");
+        bplus.inserir("zebra");
+        bplus.inserir("carro");
+        bplus.inserir("onibus");
 
         System.out.println("Palavras contidas na árvore:");
         bplus.exibir();

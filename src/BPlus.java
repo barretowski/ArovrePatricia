@@ -53,10 +53,36 @@ public class BPlus implements Util{
                     }
                 }else{//2° caso: contem mais de 1 elemento nessa ligação
                     No auxPercorre = auxNo;
-                    auxPercorre = auxNo.getvLig(posAtual);
-                    percorreArvore(palavra, auxPercorre);
+                    auxPercorre = auxPercorre.getvLig(posAtual);
+                    auxNo.setvLig(posAtual,percorreArvore(palavra, auxPercorre));
                 }
             }
+        }
+    }
+
+    private No percorreArvore(String palavra, No auxPercorre){
+        int i=0;
+        String palavraConcatenada = "";
+        String palavraNo = auxPercorre.getPalavra();
+        String novaPalavra ="";
+        for(; i<palavraNo.length() && i<palavra.length() && palavra.charAt(i) == palavraNo.charAt(i);i++){
+            palavraConcatenada = palavraConcatenada+""+palavra.charAt(i);
+        }
+        String restante = palavraNo.substring(i);
+        No antigoNo = auxPercorre;
+        auxPercorre.setFlag(false);
+        if(i<palavraNo.length()){//palavra atual do nó é menor, portanto é necessario quebra-la e remanejar o novo nó
+            novaPalavra = novaPalavra+""+palavra.substring(i);
+            auxPercorre.setPalavra(restante);
+
+            auxNo.setvLig(palavraConcatenada.charAt(0)-'a',new No(palavraConcatenada,false,null));
+            auxPercorre = auxNo.getvLig(palavraConcatenada.charAt(0)-'a');
+            auxPercorre.setvLig(novaPalavra.charAt(0)-'a',new No(novaPalavra,true,null));
+            auxPercorre.setvLig(restante.charAt(0)-'a',antigoNo);
+            return auxPercorre;
+        }else{
+            restante = palavra.substring(i);
+            return auxPercorre;
         }
     }
     //exibir
@@ -99,31 +125,6 @@ public class BPlus implements Util{
                     f.enqueue(aux.getvLig(i));
                 }
             }
-        }
-    }
-
-    private void percorreArvore(String palavra, No auxPercorre){
-        int i=0;
-        String palavraConcatenada = "";
-        String palavraNo = auxPercorre.getPalavra();
-        String novaPalavra ="";
-        for(; i<palavraNo.length() && i<palavra.length() && palavra.charAt(i) == palavraNo.charAt(i);i++){
-            palavraConcatenada = palavraConcatenada+""+palavra.charAt(i);
-        }
-        auxPercorre.setFlag(false);
-        if(i<palavraNo.length()){
-            novaPalavra = novaPalavra+""+palavra.substring(i);
-            String restante = palavraNo.substring(i);
-            auxPercorre.setPalavra(restante);
-            No antigoNo = auxPercorre;
-            auxNo.setvLig(palavraConcatenada.charAt(0)-'a',new No(palavraConcatenada,false,null));
-            auxPercorre = auxNo.getvLig(palavraConcatenada.charAt(0)-'a');
-            auxPercorre.setvLig(novaPalavra.charAt(0)-'a',new No(novaPalavra,true,null));
-            auxPercorre.setvLig(restante.charAt(0)-'a',antigoNo);
-            //remanejaFilhos(auxPercorre, restante, palavraConcatenada, novaPalavra);
-        }else{
-            palavraConcatenada = palavra.substring(i);
-            auxPercorre.setvLig(palavra.charAt(i)-'a',new No(palavraConcatenada,true,null));
         }
     }
 
